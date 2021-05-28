@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="MyApp" packages="" monitorInterval="30">
+  <Appenders>
+  <RollingFile name="RollingFile" fileName="/logs/cellebtite.log"
+                 filePattern="/logs/cellebtite-%d{MM-dd-yyyy}-%i.log.gz">
+                  <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+    </RollingFile>
+<!--   <File name="MyFile" fileName="C:\\logs/app.log">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+    </File>
+ -->   <!--  <Async name="Async">
+      <AppenderRef ref="MyFile"/>
+    </Async> -->
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="davis" level="info" additivity="false">
+      <AppenderRef ref="RollingFile"/>
+    </Logger>
+     <Logger name="davis" level="debug">
+      <AppenderRef ref="Console"/>
+    </Logger> 
+    <Root level="info">
+      <AppenderRef ref="RollingFile"/>
+    </Root>
+  </Loggers>
+</Configuration>
